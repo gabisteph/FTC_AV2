@@ -1,7 +1,72 @@
 '''Várias strings, a serem lidas da entrada padrão, até que uma string vazia seja recebida. 
 Cada string é composta pelos símbolos [,],(,),{,} ou espaço em branco.'''
+class ArrayStack:
+    """
+    Implement the Stack ADT using an array-based data structure (list).
+    """
+    def __init__(self):
+        self._data = []
+
+    def __len__(self):
+        return len(self._data)
+
+    def __str__(self):
+        return str(self._data)
+
+    def is_empty(self):
+        """
+        Check if empty. Don't bother calling our own __len__.
+        Just do what is sensible.
+        """
+        return (len(self._data)==0)
+
+    def push(self,o):
+        """
+        Add an element to the top of the stack
+        """
+        self._data.append(o)
+
+    def pop(self):
+        """
+        Pop the next item.
+        This should handle an empty stack.
+        """
+        if( self.is_empty() ):
+            raise Empty("Stack is empty")
+        return self._data.pop()
+
+    def peek(self):
+        """
+        Peek at the next item.
+        This should handle an empty stack.
+        """
+        if( self.is_empty() ):
+            raise Empty("Stack is empty")
+        return self._data[-1]
 
 
+
+
+if __name__=="__main__":
+    a = ArrayStack()
+    a.push(5)
+    a.push(15)
+    a.push(17)
+    a.push(28)
+    print("Peeking: {0}".format(a.peek()))
+    print("Length of stack: {0}".format(len(a)))
+    a.pop()
+    a.pop()
+    a.push(100)
+    a.push(200)
+    a.push(300)
+    a.push(400)
+    while(not a.is_empty()):
+        a.pop()
+        print("Popping... {0}".format(len(a)))
+    print("Done testing ArrayStack.")
+class Empty(Exception):
+    pass
 def is_matched (expr):
     lefty = '({['
     righty = ')}]'
